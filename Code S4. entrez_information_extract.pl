@@ -1,6 +1,6 @@
 use LWP::Simple;
-open(FH1,'C:\Users\wbzheng\Halteria_Nuohe\Hal_SPCA\DE\lastest\all_annotated_genes_gi_exp.txt');#Gi and expression level of all genes
-open(out,'>','C:\Users\wbzheng\Halteria_Nuohe\Hal_SPCA\DE\lastest\all_annotated_genes_gi_exp.comment');#Tab-like output file
+open(FH1,$ARGV[0]);#Gi and expression level of all genes
+open(out,'>',$ARGV[1]);#Tab-like output file
 @datassssss=<FH1>;
 
 
