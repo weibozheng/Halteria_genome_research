@@ -1,14 +1,15 @@
 use Bio::SeqIO;
-open(out1,'>C:\Users\wbzhe\Stentor\Stentor_intronfree_denovo_CDS_v1.fa');#CDS file
-open(out2,'>C:\Users\wbzhe\Stentor\Stentor_intronfree_denovo_protein_v1.fa');#Protein file
-open(out3,'>C:\Users\wbzhe\Stentor\Stentor_intronfree_denovo_intron_v1.fa');#Intron file
-my $stream_Trans = Bio::SeqIO->new(-format => 'fasta',-file   => 'C:\Users\wbzhe\Stentor\Stentor_genome_SPCA_v4_intronfree.fasta');#Original genome file
+$output_folder=$ARGV[2];
+open(out1,'>',$output_folder . 'denovo_CDS_v1.fa');#CDS file
+open(out2,'>',$output_folder . 'denovo_protein_v1.fa');#Protein file
+open(out3,'>',$output_folder . 'denovo_intron_v1.fa');#Intron file
+my $stream_Trans = Bio::SeqIO->new(-format => 'fasta',-file   => $ARGV[1]);#Original genome file
 while(my $result_Trans=$stream_Trans->next_seq()){
 	$idthis=$result_Trans->id();
 	$seq{$idthis}=$result_Trans->seq();
 }
 local $/='# end gene';
-open(infile,'C:\Users\wbzhe\Stentor\Stentor_intronfree_v1.gff');#Gff3 file produced by augustus
+open(infile,$ARGV[0]);#Gff3 file produced by augustus
 @data=<infile>;
 #print "$data[1]";
 
