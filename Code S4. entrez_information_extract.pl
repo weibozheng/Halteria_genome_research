@@ -8,11 +8,11 @@ $db = 'protein';
 print out "Protein_GI\tLogFC\tTitle\tCatalytic activity\tFunction\tSubcellular location\tMiscellaneous\tSimilarity\tTaxname\n";
 $count=0;
 foreach$keys(@datassssss){
-$keys=~/(.*?)\t(.*?)\t(.*?)\n/;
+$keys=~/(.*?)\t(.*?)\n/;
 $tag=$1;
 $id_list = $2;
 
-$exp=$3;
+
 $count++;
 print out "$tag\t$id_list\t$exp\t";
 
