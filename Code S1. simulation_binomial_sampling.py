@@ -1,11 +1,12 @@
 import re
 import random
-inf1=open(r"/Hal_v3_genome_1.pol")#original heterozygous file
-total_reads=186978547
+import sys
+inf1=open(sys.argv[1])#original heterozygous file
+total_reads=sys.argv[3] #This number is 186978547 in our sample
 
 list_b=list()
 dict_o=dict()
-out=open(r"/sim.tab","w")#simulated by binomial sampling
+out=open(sys.argv[2],"w")#simulated by binomial sampling
 new=1
 for line in inf1:
 	if new==1:
