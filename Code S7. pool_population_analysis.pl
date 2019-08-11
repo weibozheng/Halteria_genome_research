@@ -1,18 +1,16 @@
-open(INFX,'C:\Users\wbzhe\Stentor\annotation_v4-1.gff');#Genome annotation file
+import sys
+open(INFX,sys.argv[1]);#Genome annotation file
 @data_gff=<INFX>;
 foreach$keys(@data_gff){
-	$keys=~/(.*?)\t.*?\t(.*?)\t(.*?)\t(.*?)\t.*?\t.*?\t.*?\t/;#NODE_206_length_95276_cov_226.532	.	exon	1065	1313	.	-	.	ID=NODE_206_length_95276_cov_226.532|gi|NOHIT|sp|NOHIT|NOHIT|533..1591|-
+	$keys=~/(.*?)\t.*?\t(.*?)\t(.*?)\t(.*?)\t.*?\t.*?\t.*?\t/;#chr1	.	exon	1065	1313	.	-	.	ID=NODE_206_length_95276_cov_226.532|gi|NOHIT|sp|NOHIT|NOHIT|533..1591|-
 	$tag=$1;
 	$type=$2;
 	$start=$3;
 	$end=$4;
 	$hash{$tag}{$start}=$keys;
 }
-open(INF1,'C:\Users\wbzhe\Stentor\pool\genome_DNA.pro');
-open(OUT,'>C:\Users\wbzhe\Stentor\pool\genome_DNA_1.pol');
-#open(OUT1,'>C:\Users\wbzhe\Stentor\pool\genome_DNA_special_005.bi.pol');
-#open(OUT2,'>C:\Users\wbzhe\Stentor\pool\genome_DNA_special_005.tri.pol');
-#open(OUT3,'>C:\Users\wbzhe\Stentor\pool\genome_DNA_special_005.tetra.pol');
+open(INF1,sys.argv[2]);
+open(OUT,sys.argv[3]);
 print OUT "chromosome\tposition\tminor_allele\tMAF\tmajor_allele\tMAAF\tposition_type\tpoly_type\treads_num\tgene\tPi\n";
 @data=<INF1>;
 $cutoff=0.02;
