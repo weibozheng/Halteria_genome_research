@@ -1,14 +1,16 @@
 #!/usr/bin/perl
 use Bio::SeqIO;
 use Bio::SearchIO;
-open(out,'>C:\Users\wbzhe\Stentor\Stentor_genome_SPCA_v4_intronfree_CDS_INR.fasta');#predicted genes
-open(out1,'>C:\Users\wbzhe\Stentor\Stentor_genome_SPCA_v4_intronfree_intron_INR.fasta');#potential introns which are not detected by rna-seq
-my $stream_Trans = Bio::SeqIO->new(-format => 'fasta',-file   => 'C:\Users\wbzhe\Stentor\Stentor_genome_SPCA_v4_intronfree.fasta');#original contig file
+$out_predict=$ARGV[2] . '_CDS.fasta';
+$out_intron=$ARGV[2] . '_intron.fasta';
+open(out,'>',$out_predict);#predicted genes
+open(out1,'>',$out_intron);#potential introns which are not detected by rna-seq
+my $stream_Trans = Bio::SeqIO->new(-format => 'fasta',-file   => $ARGV[0]);#original contig file
 while(my $result_Trans=$stream_Trans->next_seq()){
 	$idthis=$result_Trans->id();
 	$seq{$idthis}=$result_Trans->seq();
 }
-my $searchin = Bio::SearchIO->new(-format => 'blastxml', -file   => 'C:\Users\wbzhe\Stentor\Stentor_SPCA_v4_intronfree_blastx_swissprot_v2.xml');#blastxml file
+my $searchin = Bio::SearchIO->new(-format => 'blastxml', -file   => $ARGV[1]);#blastxml file
 while( my $query = $searchin->next_result) {
 	$query_id=$query->query_description();
 	$query_length=$query->query_length();
