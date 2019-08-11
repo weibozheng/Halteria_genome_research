@@ -1,25 +1,26 @@
 #!/usr/bin/perl
 use Bio::SeqIO;
 use Bio::SearchIO;
-open(out1,'>C:\Users\wbzhe\Stentor\denovo_new.fa');#De novo predicted genes that is not involved in ncbi database
-open(out2,'>C:\Users\wbzhe\Stentor\denovo_same.fa');#Genes predicted by both database-based method and augustus
-my $stream_Trans = Bio::SeqIO->new(-format => 'fasta',-file   => 'C:\Users\wbzhe\Stentor\Stentor_intronfree_db_CDS_v1.fas');#genes predicted by database-based method 
+$output_folder=$ARGV[2];
+open(out1,'>',$output_folder . 'denovo_new.fa');#De novo predicted genes that is not involved in ncbi database
+open(out2,'>',$output_folder . 'denovo_same.fa');#Genes predicted by both database-based method and augustus
+my $stream_Trans = Bio::SeqIO->new(-format => 'fasta',-file   => $ARGV[0]);#genes predicted by database-based method 
 while(my $result_Trans=$stream_Trans->next_seq()){
 	$idthis=$result_Trans->id();
 	$seq_database{$idthis}=$result_Trans->seq();
 
 }
-my $stream_Trans = Bio::SeqIO->new(-format => 'fasta',-file   => 'C:\Users\wbzhe\Stentor\Stentor_intronfree_denovo_CDS_v1.fa');#genes predicted by de novo method
+my $stream_Trans = Bio::SeqIO->new(-format => 'fasta',-file   => $ARGV[1]);#genes predicted by de novo method
 while(my $result_Trans=$stream_Trans->next_seq()){
 	$idthis=$result_Trans->id();
-	$idthis=~/(NODE.*?)\|gi\|.*?\|sp.*\|.*?\|.*?\|(\d+)\.\.(\d+)\|/;#This regulation expression extract 1. chromosome, 2. start, 3. end
+	$idthis=~/(.*?)\|gi\|.*?\|sp.*\|.*?\|.*?\|(\d+)\.\.(\d+)\|/;#This regulation expression extract 1. chromosome, 2. start, 3. end
 	$tag_denovo=$1;
 	$start_denovo=$2;
 	$end_denovo=$3;
 	$seq_denovo{$idthis}=$result_Trans->seq();
 	$ok=0;
 	foreach$keys(keys%seq_database){
-		$keys=~/(NODE.*?)\|gi\|.*?\|sp.*\|.*?\|.*?\|(\d+)\.\.(\d+)\|/;#ditto
+		$keys=~/(.*?)\|gi\|.*?\|sp.*\|.*?\|.*?\|(\d+)\.\.(\d+)\|/;#ditto
 		$tag_database=$1;
 		$start_database=$2;
 		$end_database=$3;
