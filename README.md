@@ -43,4 +43,10 @@ This is a perl script. This script extracts genes and proteins from GFF3 file of
 This is a perl script. This script will compare genes annotated by database method and de novo method (AUGUSTUS) and remove redundant genes in the final output file.  
 **Required module:** Bio::SeqIO. These modules are in the bioperl bundle (version 1.6).  
 **Usage:** combine_database_and_denovo_annotation.pl \<genes predicted by database\> \<genes predicted by AUGUSTUS\> \<output folder\>   
-  **Eg.** perl combine_database_and_denovo_annotation.pl genes_swiss_prot.fasta genes_denovo.fasta output_folder   
+  **Eg.** perl combine_database_and_denovo_annotation.pl genes_swiss_prot.fasta genes_denovo.fasta output_folder  
+  
+### (6) Code S7. pool_population_analysis.pl 
+This is a perl script. This script analyses   
+**Required module:** Bio::SeqIO. These modules are in the bioperl bundle (version 1.6).  
+**Usage:** pool_population_analysis.pl \<gff annotation file\> \<pool population profile\> \<output file\>   
+  **Eg.** perl pool_population_analysis.pl annotation.gff3 genome.profile output_folder   
