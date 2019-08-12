@@ -52,9 +52,9 @@ This is a perl script. This script utlizes pool population profile and annotatio
   **Eg.** perl pool_population_analysis.pl annotation.gff3 genome.profile output_folder  
 The format of pool population profile is shown below.
 
->contig_id  
+>\>contig_id  
 position A C G T  
->contig_1  
+>\>contig_1  
 3 52 22 0 0  
 5 223 2 0 0  
 12 0 23 0 29  
